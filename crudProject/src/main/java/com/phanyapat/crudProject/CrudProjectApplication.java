@@ -26,8 +26,23 @@ public class CrudProjectApplication {
 
 //			queryAllStudent(studentDAO);
 
-			queryStudentByLastName(studentDAO);
+//			queryStudentByLastName(studentDAO);
+
+			updateStudent(studentDAO);
+
 		};
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+		int studentId = 1;
+		Student student = studentDAO.findById(studentId);
+
+		student.setFirstName("Cristiano");
+		student.setEmail("cristiano@hotmail.com");
+
+		studentDAO.update(student);
+
+		System.out.println("Updated student id : " + student);
 	}
 
 	private void queryStudentByLastName(StudentDAO studentDAO) {
