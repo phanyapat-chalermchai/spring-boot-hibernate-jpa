@@ -18,14 +18,16 @@ public class CrudProjectApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 
 		return runner -> {
-			createStudent(studentDAO);
+//			createStudent(studentDAO);
+
+			readStudent(studentDAO);
 		};
 	}
 
-	private void createStudent(StudentDAO studentDAO) {
+	private void readStudent(StudentDAO studentDAO) {
 		//create student
 		System.out.println("Creating new student object ...");
-		Student tempStudent = new Student("Cristenal","Ronaldo","cris.r@hotmail.com");
+		Student tempStudent = new Student("Shatrix","Shaco","ohana@hotmail.com");
 
 		//save student
 		System.out.println("Saving student object ...");
@@ -34,5 +36,24 @@ public class CrudProjectApplication {
 		//display student id
 		System.out.println("Saved student id : " + tempStudent.getId());
 
+		//retrieve student based on the id: primary key
+		Student tempStudentById = studentDAO.findById(tempStudent.getId());
+
+		//display student
+		System.out.println("Found student : " + tempStudentById.getId());
+		System.out.println("Found student : " + tempStudentById);
+	}
+
+	private void createStudent(StudentDAO studentDAO) {
+		//create student
+		System.out.println("Creating new student object ...");
+		Student tempStudent = new Student("Ohana","Uwu","ohana@hotmail.com");
+
+		//save student
+		System.out.println("Saving student object ...");
+		studentDAO.save(tempStudent);
+
+		//display student id
+		System.out.println("Saved student id : " + tempStudent.getId());
 	}
 }
