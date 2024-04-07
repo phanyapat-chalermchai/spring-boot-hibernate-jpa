@@ -24,11 +24,22 @@ public class CrudProjectApplication {
 
 //			readStudent(studentDAO);
 
-			getAllStudent(studentDAO);
+//			queryAllStudent(studentDAO);
+
+			queryStudentByLastName(studentDAO);
 		};
 	}
 
-	private void getAllStudent(StudentDAO studentDAO) {
+	private void queryStudentByLastName(StudentDAO studentDAO) {
+
+		//get a list of students
+		List<Student> studentList = studentDAO.findByLastName("Shaco");
+
+		//display list of students
+		studentList.forEach(System.out::println);
+	}
+
+	private void queryAllStudent(StudentDAO studentDAO) {
 		List<Student> studentList = studentDAO.findAll();
 		studentList.forEach(System.out::println);
 	}
